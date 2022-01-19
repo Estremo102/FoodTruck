@@ -5,19 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LangTruckStaff"
         mc:Ignorable="d"
-        Title="LTS" Height="450" Width="800">
+        Title="LTS" Height="1080" Width="1920">
     <Grid>
-        <Rectangle HorizontalAlignment="Left" Stroke="Black" Width="248" Fill="#FFE67A2F"/>
-        <Label x:Name="EmployeeData" Content="Imie Nazwisko; Stanowisko" HorizontalAlignment="Left" Margin="16,17,0,0" VerticalAlignment="Top" Width="411"/>
-        <Button x:Name="nz" Content="Nowe Zamówienie" HorizontalAlignment="Left" Margin="25,62,0,0" VerticalAlignment="Top" Height="37" Width="122" Click="nz_Click" Visibility="Hidden"/>
-        <Button x:Name="pd" Content="Podsumowanie Dnia" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
-        <Button x:Name="zprac" Content="Zarządzaj&#xA;Pracownikami" HorizontalAlignment="Left" Margin="25,146,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
-        <Button x:Name="zf" Content="Zarządzaj&#xA;Foodtruckami" HorizontalAlignment="Left" Margin="25,188,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
-        <Button x:Name="zk" Content="Zarządzaj&#xA;Kuponami" HorizontalAlignment="Left" Margin="25,230,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
-        <Button x:Name="zprod" Content="Zarządzaj&#xA;Produktami" HorizontalAlignment="Left" Margin="25,272,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
-        <Button x:Name="logout" Content="Wyloguj" Margin="0,11,10,0" VerticalAlignment="Top" Height="37" Click="logout_Click" HorizontalAlignment="Right" Width="122"/>
-        <Button x:Name="settings" Content="Ustawienia" Margin="0,53,10,0" VerticalAlignment="Top" Height="37" HorizontalAlignment="Right" Width="122"/>
-        <TextBlock x:Name="centerText" HorizontalAlignment="Left" Margin="253,10,0,10" TextWrapping="Wrap" Width="304"><Run Language="pl-pl" Text="Produkty"/></TextBlock>
-
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,0" StartPoint="0.4,1" MappingMode="RelativeToBoundingBox" SpreadMethod="Pad" Opacity="0.99">
+                <GradientStop Color="Black" Offset="0.613"/>
+                <GradientStop Color="#FF965E0B" Offset="0.737"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Rectangle HorizontalAlignment="Left" Stroke="Black" Width="310">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF98600E" Offset="0.157"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="EmployeeData" Content="Imie Nazwisko; Stanowisko" HorizontalAlignment="Left" Margin="16,17,0,0" VerticalAlignment="Top" Width="411" FontWeight="Bold"/>
+        <Button x:Name="nz" Content="Nowe Zamówienie" HorizontalAlignment="Left" Margin="25,62,0,0" VerticalAlignment="Top" Height="37" Width="122" Click="nz_Click" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="pd" Content="Podsumowanie Dnia" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="zprac" Content="Zarządzaj&#xA;Pracownikami" HorizontalAlignment="Left" Margin="25,146,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="zf" Content="Zarządzaj&#xA;Foodtruckami" HorizontalAlignment="Left" Margin="25,188,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="zk" Content="Zarządzaj&#xA;Kuponami" HorizontalAlignment="Left" Margin="25,230,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="zprod" Content="Zarządzaj&#xA;Produktami" HorizontalAlignment="Left" Margin="25,272,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="logout" Content="Wyloguj" Margin="0,11,10,0" VerticalAlignment="Top" Height="37" Click="logout_Click" HorizontalAlignment="Right" Width="122" Background="Black" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="settings" Content="Ustawienia" Margin="0,53,10,0" VerticalAlignment="Top" Height="37" HorizontalAlignment="Right" Width="122" Click="settings_Click" Foreground="White" BorderBrush="White" Background="Black"/>
+        <ListBox x:Name="centerText" HorizontalAlignment="Left" Margin="315,10,0,10" Width="773" Foreground="White" SelectionChanged="centerText_SelectionChanged">
+            <ListBox.BorderBrush>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </ListBox.BorderBrush>
+            <ListBox.Background>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </ListBox.Background>
+        </ListBox>
+        <ListBox x:Name="Basket" Margin="0,0,5,10" Foreground="White" SelectionChanged="Basket_SelectionChanged" Height="522" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="773" HorizontalContentAlignment="Center">
+            <ListBox.BorderBrush>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </ListBox.BorderBrush>
+            <ListBox.Background>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </ListBox.Background>
+        </ListBox>
+        <Grid x:Name="order" Margin="0,0,10,10" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="270" Visibility="Hidden">
+            <Button x:Name="SubmitOrder" Content="Złóż Zamówienie" Margin="135,14,0,0" Click="SubmitOrder_Click" Foreground="White" BorderBrush="White" Background="Black" HorizontalAlignment="Left" Width="122" Height="36" VerticalAlignment="Top"/>
+            <Label x:Name="summary" Content="0Zł" Margin="0,10,144,0" Foreground="White" FontSize="20" Height="37" VerticalAlignment="Top" HorizontalAlignment="Right" Width="116" HorizontalContentAlignment="Right"/>
+        </Grid>
     </Grid>
 </Window>

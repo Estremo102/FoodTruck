@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodTruck
 {
-    public class Product
+    public record Product
     {
         public int ID { get; }
         public string Name { get; }

@@ -21,6 +21,8 @@ namespace LangTruckStaff
     public partial class LTS : Window
     {
         Session s;
+        private static List<Product> products = new List<Product>();
+        private static Dictionary<Product, int> basket = new Dictionary<Product, int>();
         public LTS(Session s)
         {
             InitializeComponent();
@@ -62,10 +64,79 @@ namespace LangTruckStaff
 
         private void nz_Click(object sender, RoutedEventArgs e)
         {
-            List<Product> products = Product.GetProducts();
-            centerText.Text = "";
+            basket.Clear();
+            Basket.Items.Clear();
+            products = Product.GetProducts();
+            centerText.Items.Clear();
             foreach(Product product in products)
-                centerText.Text += $"{product.ID} | {product.Name} - {product.Price:c}\n{product.Description}\n";
+                if(product.IsAvailable)
+                    centerText.Items.Add($"{product.ID} | {product.Name} - {product.Price:c}\n{product.Description}");
+            order.Visibility = Visibility.Visible;
+        }
+
+        private void settings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void centerText_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                Product product = products[centerText.SelectedIndex];
+                centerText.UnselectAll();
+                try
+                {
+                    basket.Add(product, 1);
+                }
+                catch
+                {
+                    basket[product]++;
+                }
+                Basket.Items.Clear();
+                decimal total = 0m;
+                foreach (KeyValuePair<Product, int> p in basket)
+                {
+                    Basket.Items.Add($"{p.Key.Name} x {p.Value}");
+                    total += p.Key.Price*p.Value;
+                }
+                summary.Content = $"{total:c}";
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Basket_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int a = Basket.SelectedIndex;
+            int b = 0;
+            foreach (KeyValuePair<Product, int> p in basket)
+            {
+                if (a==b++)
+                {
+                    if (p.Value==1)
+                        basket.Remove(p.Key);
+                    else
+                        basket[p.Key]--;
+                    break;
+                }
+            }
+            decimal total = 0m;
+            Basket.UnselectAll();
+            Basket.Items.Clear();
+            foreach (KeyValuePair<Product, int> p in basket)
+            {
+                Basket.Items.Add($"{p.Key.Name} x {p.Value}");
+                total += p.Key.Price*p.Value;
+            }
+            summary.Content = $"{total:c}";
+        }
+
+        private void SubmitOrder_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
