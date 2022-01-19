@@ -1,0 +1,17 @@
+﻿<Window x:Class="LangTruckStaff.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LangTruckStaff"
+        mc:Ignorable="d"
+        Title="LangTruckStaff" Height="240" Width="383">
+    <Grid>
+        <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="191,123,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click"/>
+        <TextBox x:Name="LoginField" HorizontalAlignment="Left" Margin="132,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="PasswordField" HorizontalAlignment="Left" Margin="132,100,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Login&#xD;&#xA;" HorizontalAlignment="Left" Margin="89,73,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hasło&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="89,96,0,0" VerticalAlignment="Top" Height="26"/>
+
+    </Grid>
+</Window>

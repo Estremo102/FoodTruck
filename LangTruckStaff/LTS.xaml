@@ -1,0 +1,21 @@
+﻿<Window x:Class="LangTruckStaff.LTS"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LangTruckStaff"
+        mc:Ignorable="d"
+        Title="LTS" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="EmployeeData" Content="Imie Nazwisko; Stanowisko" HorizontalAlignment="Left" Margin="16,17,0,0" VerticalAlignment="Top" Width="411"/>
+        <Button x:Name="nz" Content="Nowe Zamówienie" HorizontalAlignment="Left" Margin="25,62,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
+        <Button x:Name="pd" Content="Podsumowanie Dnia" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
+        <Button x:Name="zprac" Content="Zarządzaj&#xA;Pracownikami" HorizontalAlignment="Left" Margin="25,146,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
+        <Button x:Name="zf" Content="Zarządzaj&#xA;Foodtruckami" HorizontalAlignment="Left" Margin="25,188,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
+        <Button x:Name="zk" Content="Zarządzaj&#xA;Kuponami" HorizontalAlignment="Left" Margin="25,230,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
+        <Button x:Name="zprod" Content="Zarządzaj&#xA;Produktami" HorizontalAlignment="Left" Margin="25,272,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden"/>
+        <Button x:Name="logout" Content="Wyloguj" Margin="0,11,10,0" VerticalAlignment="Top" Height="37" Click="logout_Click" HorizontalAlignment="Right" Width="122"/>
+        <Button x:Name="settings" Content="Ustawienia" Margin="0,53,10,0" VerticalAlignment="Top" Height="37" Click="logout_Click" HorizontalAlignment="Right" Width="122"/>
+
+    </Grid>
+</Window>
