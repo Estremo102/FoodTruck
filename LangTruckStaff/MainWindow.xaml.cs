@@ -31,7 +31,6 @@ namespace LangTruckStaff
         {
             if (s.LogIn(LoginField.Text, PasswordField.Password))
             {
-                MessageBox.Show("Zalogowano");
                 s.GetEmployeeData(LoginField.Text);
                 LTS lts = new LTS(s);
                 lts.Show();

@@ -59,5 +59,13 @@ namespace LangTruckStaff
             new MainWindow().Show();
             this.Close();
         }
+
+        private void nz_Click(object sender, RoutedEventArgs e)
+        {
+            List<Product> products = Product.GetProducts();
+            centerText.Text = "";
+            foreach(Product product in products)
+                centerText.Text += $"{product.ID} | {product.Name} - {product.Price:c}\n{product.Description}\n";
+        }
     }
 }
