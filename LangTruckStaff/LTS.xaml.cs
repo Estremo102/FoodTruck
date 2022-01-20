@@ -23,6 +23,7 @@ namespace LangTruckStaff
         Session s;
         private static List<Product> products = new List<Product>();
         private static Dictionary<Product, int> basket = new Dictionary<Product, int>();
+        private static Order o = new Order(basket, "");
         public LTS(Session s)
         {
             InitializeComponent();
@@ -31,14 +32,14 @@ namespace LangTruckStaff
             p = (Permissions)s.Permissions;
             EmployeeData.Content = $"{s.Name} {s.Surname}; {p}";
 
-            if((int)p>0)
+            if ((int)p>0)
             {
                 nz.Visibility = Visibility.Visible;
-                if((int)p>1)
+                if ((int)p>1)
                 {
                     pd.Visibility = Visibility.Visible;
                     zprac.Visibility = Visibility.Visible;
-                    if((int)p>2)
+                    if ((int)p>2)
                     {
                         zf.Visibility = Visibility.Visible;
                         zk.Visibility = Visibility.Visible;
@@ -68,10 +69,16 @@ namespace LangTruckStaff
             Basket.Items.Clear();
             products = Product.GetProducts();
             centerText.Items.Clear();
-            foreach(Product product in products)
-                if(product.IsAvailable)
+            foreach (Product product in products)
+                if (product.IsAvailable)
                     centerText.Items.Add($"{product.ID} | {product.Name} - {product.Price:c}\n{product.Description}");
             order.Visibility = Visibility.Visible;
+            appField.Visibility = Visibility.Visible;
+            SubmitOrder.Content = "Złóż zamówienie";
+            appField.Visibility = Visibility.Hidden;
+            scanApp.Visibility = Visibility.Hidden;
+            appStatus.Visibility = Visibility.Hidden;
+            summary.Content = $"{0:c}";
         }
 
         private void settings_Click(object sender, RoutedEventArgs e)
@@ -112,6 +119,7 @@ namespace LangTruckStaff
         {
             int a = Basket.SelectedIndex;
             int b = 0;
+
             foreach (KeyValuePair<Product, int> p in basket)
             {
                 if (a==b++)
@@ -136,7 +144,37 @@ namespace LangTruckStaff
 
         private void SubmitOrder_Click(object sender, RoutedEventArgs e)
         {
+            if (scanApp.Visibility == Visibility.Hidden && appStatus.Visibility == Visibility.Hidden)
+            {
+                o = new Order(basket, "K1LANGO");//TODO rejestracja
+                scanApp.Visibility = Visibility.Visible;
+                appField.Visibility = Visibility.Visible;
+                SubmitOrder.Content = "Zapłać";
+                centerText.Items.Clear();
+            }
+            else
+            {
+                o.Pay(basket);
+                order.Visibility = Visibility.Hidden;
+                Basket.Items.Clear();
+            }
+        }
 
+        private void ScanApp_Click(object sender, RoutedEventArgs e)
+        {
+            string code = appField.Text;
+            appField.Text = "";
+            if (o.ScanApp(code))
+            {
+                appField.Visibility = Visibility.Hidden;
+                scanApp.Visibility = Visibility.Hidden;
+                appStatus.Visibility = Visibility.Visible;
+                summary.Content = $"{o.Summary:c}";
+            }
+            else
+            {
+                MessageBox.Show("Błędny Kod");
+            }
         }
     }
 }
