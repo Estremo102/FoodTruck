@@ -31,19 +31,14 @@ namespace FoodTruck
         public void Pay(Dictionary<Product, int> products)
         {
             Decimal.TryParse(Convert.ToString((double)Summary), out decimal total);
-            Query.SQLQuery(@$"INSERT INTO Zamowienia (Kwota, KlientID, FoodtruckID)
-                            VALUES
-                            ({total}, {ClientID}, '{FoodTruckID}')");
+            Query.SQLQuery(@$"EXECUTE DodajZamowienie {total.ToString().Replace(',', '.')}, {ClientID}, '{FoodTruckID}'");
 
             string orderID = Query.SQLArrayQuery("SELECT TOP 1 ID FROM Zamowienia ORDER BY ID DESC")[0];
-
             foreach (KeyValuePair<Product, int> p in products)
             {
                 Query.SQLQuery("INSERT INTO ZawartoscZamowienia (ZamowienieID, ProduktID, Ilosc)" + 
                               $"VALUES ({orderID}, {p.Key.ID}, {p.Value})");
             }
-
-            //TODO LP ADD
         }
     }
 }
