@@ -23,7 +23,7 @@
         </Rectangle>
         <Label x:Name="EmployeeData" Content="Imie Nazwisko; Stanowisko" HorizontalAlignment="Left" Margin="16,17,0,0" VerticalAlignment="Top" Width="411" FontWeight="Bold"/>
         <Button x:Name="nz" Content="Nowe Zamówienie" HorizontalAlignment="Left" Margin="25,62,0,0" VerticalAlignment="Top" Height="37" Width="122" Click="nz_Click" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
-        <Button x:Name="pd" Content="Podsumowanie Dnia" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="pd" Content="Podsumowanie Dnia" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Height="37" Width="122" Background="Black" BorderBrush="White" Foreground="White" Click="pd_Click" Visibility="Hidden" />
         <Button x:Name="zprac" Content="Zarządzaj&#xA;Pracownikami" HorizontalAlignment="Left" Margin="25,146,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
         <Button x:Name="zf" Content="Zarządzaj&#xA;Foodtruckami" HorizontalAlignment="Left" Margin="25,188,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
         <Button x:Name="zk" Content="Zarządzaj&#xA;Kuponami" HorizontalAlignment="Left" Margin="25,230,0,0" VerticalAlignment="Top" Height="37" Width="122" Visibility="Hidden" Background="Black" BorderBrush="White" Foreground="White"/>
@@ -56,6 +56,18 @@
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>
             </TextBox>
+        </Grid>
+        <Grid x:Name="podsumowanie" Background="White" Margin="267,0,183,0">
+            <Label Content="Podsumowanie Dnia" HorizontalAlignment="Left" Margin="240,25,0,0" VerticalAlignment="Top" Height="49" Width="236" FontSize="24"/>
+            <Label x:Name="pdData" Content="0001-01-01" HorizontalAlignment="Left" Margin="476,25,0,0" VerticalAlignment="Top" Height="42" Width="138" FontSize="24" FontWeight="Bold"/>
+            <Label Content="dla punktu" HorizontalAlignment="Left" Margin="628,25,0,0" VerticalAlignment="Top" Height="49" Width="132" FontSize="24"/>
+            <Label Content="K1LANGO" HorizontalAlignment="Left" Margin="760,28,0,0" VerticalAlignment="Top" Height="42" Width="147" FontSize="24" FontWeight="Bold"/>
+            <ListBox x:Name="zamowieniaPodsumowanie" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="240,99,593,385"/>
+            <Label Content="Utarg" HorizontalAlignment="Left" Margin="240,688,0,0" VerticalAlignment="Top" Height="48" Width="82" FontSize="24"/>
+            <Label x:Name="pdUtarg" Content="0 Zł" HorizontalAlignment="Left" Margin="322,691,0,0" VerticalAlignment="Top" Height="42" Width="147" FontSize="24" FontWeight="Bold"/>
+            <Label Content="Ilość zamówień" HorizontalAlignment="Left" Margin="558,691,0,0" VerticalAlignment="Top" Height="48" Width="177" FontSize="24"/>
+            <Label x:Name="pdIloscZamowien" Content="0" HorizontalAlignment="Left" Margin="740,691,0,0" VerticalAlignment="Top" Height="42" Width="147" FontSize="24" FontWeight="Bold"/>
+            <Button Content="Zamknij kasę" HorizontalAlignment="Left" Margin="740,760,0,0" VerticalAlignment="Top" Height="66" Width="147" FontSize="24"/>
         </Grid>
     </Grid>
 </Window>

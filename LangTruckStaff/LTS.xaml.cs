@@ -47,6 +47,7 @@ namespace LangTruckStaff
                     }
                 }
             }
+            pdData.Content = DateTime.Now.ToString().Split(' ')[0].Replace('.', '-');
         }
 
         enum Permissions
@@ -175,6 +176,33 @@ namespace LangTruckStaff
             {
                 MessageBox.Show("Błędny Kod");
             }
+        }
+
+        private void pd_Click(object sender, RoutedEventArgs e)
+        {
+            podsumowanie.Visibility = podsumowanie.Visibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+            if (podsumowanie.Visibility == Visibility.Visible)
+            {
+                try
+                {
+                    double utarg = 0;
+                    string[,] zamowienia = Query.SQL2DArrayQuery("SELECT Kwota, KlientID, CAST([DATA] as time) FROM v_PodsumowanieDnia WHERE FoodTruckID = 'K1LANGO'");
+                    for (int i = 0; i < zamowienia.GetLength(0); i++)
+                    {
+                        double cena = Convert.ToDouble(zamowienia[i, 0]);
+                        zamowieniaPodsumowanie.Items.Add($"{cena:c}, {zamowienia[i, 1]}, {zamowienia[i, 2]}");
+                        utarg+=cena;
+                    }
+                    pdUtarg.Content = $"{utarg:c}";
+                    pdIloscZamowien.Content = zamowienia.GetLength(0);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    zamowieniaPodsumowanie.Items.Add("Brak zamówień");
+                }
+            }
+            else
+                zamowieniaPodsumowanie.Items.Clear();
         }
     }
 }
